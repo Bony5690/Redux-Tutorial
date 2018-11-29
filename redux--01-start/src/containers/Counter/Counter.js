@@ -4,36 +4,14 @@ import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
 class Counter extends Component {
-    state = {
-        counter: 0
-    }
-
-    counterChangedHandler = ( action, value ) => {
-        switch ( action ) {
-            case 'inc':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + 1 } } )
-                break;
-            case 'dec':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - 1 } } )
-                break;
-            case 'add':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + value } } )
-                break;
-            case 'sub':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - value } } )
-                break;
-        }
-    }
-
     render () {
-        console.log(this.state.counter);
         return (
             <div>
                 <CounterOutput value={this.props.ctr} />
                 <CounterControl label="Increment" clicked={this.props.onIncrementCounter} />
                 <CounterControl label="Decrement" clicked={this.props.onDecrementCounter}  />
-                <CounterControl label="Add 5" clicked={this.props.onAdd5}  />
-                <CounterControl label="Subtract 5" clicked={this.props.onSubtract5}  />
+                <CounterControl label="Add 5" clicked={this.props.onAdd}  />
+                <CounterControl label="Subtract 5" clicked={this.props.onSubtract}  />
             </div>
         );
     }
@@ -49,8 +27,8 @@ const mapDispatchToProps = dispatch => {
     return {
       onIncrementCounter: () => dispatch({type: 'INCREMENT'}),
       onDecrementCounter: () => dispatch({type: 'DECREMENT'}),
-      onAdd5: () => dispatch({type: 'Add 5'}),
-      onSubtract5: () => dispatch({type: 'Subtract 5'})
+      onAdd: () => dispatch({type: 'Add'}),
+      onSubtract: () => dispatch({type: 'Subtract'})
     };
 }
 
